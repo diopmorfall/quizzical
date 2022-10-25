@@ -1,5 +1,5 @@
 import React from 'react';
-import { Question } from '../Question';
+import { QuestionModel } from '../QuestionModel';
 
 export default function Quiz() {
     const [questions, setQuestions] = React.useState([]);
@@ -10,7 +10,7 @@ export default function Quiz() {
         .then((res) => res.json())
         .then((data) =>
             setQuestions(() =>
-            data.results.map((question) => new Question(question))
+            data.results.map((question) => new QuestionModel(question))
             )
         );
     }, []);
