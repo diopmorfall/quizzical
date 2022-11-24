@@ -1,4 +1,5 @@
 import React from 'react';
+import { nanoid } from 'nanoid'
 import { QuestionModel } from '../QuestionModel';
 import Question from './Question';
 import Answer from './Answer';
@@ -22,8 +23,8 @@ function selectAnswer(query, selectedAnswer) {
         return prevQuestions.map(question => {
             if (question.query === query) {
                 let newAnswers = question.answers.map((answer) => ({
-                ...answer,
-                isSelected: false,
+                    ...answer,
+                    isSelected: false,
                 }));
                 newAnswers = newAnswers.map(answer => {
                     if (answer.value === selectedAnswer) {
@@ -38,14 +39,18 @@ function selectAnswer(query, selectedAnswer) {
     });
 }
 
+function checkAnswers(){
+
+}
+
     const questionElements = questions.map(question => (
         <Question
-            key={question.query}
+            key={nanoid()}
             query={question.query}
         >
             {question.answers.map(answer => (
                 <Answer
-                    key={answer.value}
+                    key={nanoid()}
                     value={answer.value}
                     isRight={answer.isRight}
                     isSelected={answer.isSelected}
@@ -60,7 +65,7 @@ function selectAnswer(query, selectedAnswer) {
         {questionElements.length ? (
             <>
                 {questionElements}
-                <button className="general-btn">Check answers</button>
+                <button className="general-btn" onClick={checkAnswers}>Check answers</button>
             </>
         ) : (
             'spinner...'
