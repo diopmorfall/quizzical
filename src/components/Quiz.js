@@ -1,5 +1,6 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
+import axios from 'axios';
 
 import { QuestionModel } from '../QuestionModel';
 import Question from './Question';
@@ -8,15 +9,14 @@ import Answer from './Answer';
 export default function Quiz() {
     const [questions, setQuestions] = React.useState([]);
     React.useEffect(() => {
-        fetch(
-        'https://opentdb.com/api.php?amount=5&category=22&difficulty=medium&type=multiple'
+        axios.get(
+            'https://opentdb.com/api.php?amount=5&category=22&difficulty=medium&type=multiple'
         )
-        .then(res => res.json())
-        .then(data =>
-            setQuestions(() =>
-                data.results.map(question => new QuestionModel(question))
-            )
-        );
+            .then(data => 
+                setQuestions(() =>
+                    data.data.results.map(question => new QuestionModel(question))
+                )
+            );
     }, []);
 
 function selectAnswer(query, selectedAnswer) {
