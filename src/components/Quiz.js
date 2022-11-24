@@ -21,12 +21,12 @@ export default function Quiz() {
         <Question
             key={question.query}
             query={question.query}
-            solution={question.solution}
         >
             {question.answers.map((answer) => (
                 <Answer
                     key={answer.value}
                     value={answer.value}
+                    isRight={answer.isRight}
                     isSelected={answer.isSelected}
                 />
             ))}
@@ -37,11 +37,11 @@ export default function Quiz() {
         <section className="quiz">
         {questionElements.length ? (
             <>
-            {questionElements}
-            <button className="general-btn">Check answers</button>
+                {questionElements}
+                <button className="general-btn">Check answers</button>
             </>
         ) : (
-            'Please wait...'
+            'spinner...'
         )}
         </section>
     );
