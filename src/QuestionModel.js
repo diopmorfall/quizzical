@@ -1,15 +1,17 @@
+import { decode } from 'html-entities';
+
 export class QuestionModel {
     constructor(infos) {
-        this.query = infos.question;
+        this.query = decode(infos.question);
         this.answers = shuffleAnswers([
             {
-                value: infos.correct_answer,
+                value: decode(infos.correct_answer),
                 isRight: true,
                 isSelected: false,
             },
             ...infos.incorrect_answers.map(answer => 
                 ({
-                    value: answer,
+                    value: decode(answer),
                     isRight: false,
                     isSelected: false,
                 })

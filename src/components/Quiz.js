@@ -1,5 +1,6 @@
 import React from 'react';
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
+
 import { QuestionModel } from '../QuestionModel';
 import Question from './Question';
 import Answer from './Answer';
