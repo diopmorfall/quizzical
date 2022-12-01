@@ -49,6 +49,10 @@ main {
     color: #f5f7fb;
 }
 
+.loader{
+    border-radius: 10px;
+}
+
 .general-btn {
     width: 193px;
     height: 52px;
@@ -116,7 +120,7 @@ main {
     border-radius: 8px;
     text-align: center;
     font-family: 'Inter', sans-serif;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 10.24px;
     overflow: visible;
     cursor: pointer;

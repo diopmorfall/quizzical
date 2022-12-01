@@ -1,6 +1,7 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
 import axios from 'axios';
+import BarLoader from 'react-spinners/BarLoader';
 
 import { QuestionModel } from '../QuestionModel';
 import Question from './Question';
@@ -91,7 +92,7 @@ function checkAnswers() {
                     )}
             </>
         ) : (
-            'spinner...'
+            <BarLoader className='loader' color='#4d5b9e' height='20px' width='50%' />
         )}
         </section>
     );
