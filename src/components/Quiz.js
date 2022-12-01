@@ -57,6 +57,9 @@ function checkAnswers() {
         })
     );
     setIsQuizEnded(true);
+    setTimeout(() => {
+        document.getElementById("game-over").scrollIntoView(true)
+    }, 500);
 }
 
     const questionElements = questions.map(question => (
@@ -81,7 +84,9 @@ function checkAnswers() {
         {questionElements.length ? (
             <>
                 {questionElements}
-                <button className="general-btn" onClick={checkAnswers}>Check answers</button>
+                
+                    <button className="general-btn" onClick={checkAnswers}>Check answers</button>
+                
                 {isQuizEnded ? (
                     <GameOver
                         correctAnswers={correctAnswers}
