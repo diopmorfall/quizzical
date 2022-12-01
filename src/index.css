@@ -3,38 +3,48 @@
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
-  }
-  
-  #root {
+}
+
+#root {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     background-color: #f5f7fb;
-  }
-  
-  main {
+}
+
+main {
     height: 35%;
-  }
-  
-  .home {
+}
+
+.home {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     color: #293264;
-  }
-  
-  .home h1 {
+}
+
+.home h1 {
     font-size: 31px;
     margin-bottom: 7px;
-  }
-  
-  .home p {
+}
+
+.home p {
+    margin-bottom: 40px;
+}
+
+.selection {
+    height: 42px;
+    max-width: fit-content;
     margin-bottom: 30px;
-  }
-  
-  .general-btn {
+    border-radius: 15px;
+    text-align: center;
+    background-color: #4d5b9e;
+    color: #f5f7fb;
+}
+
+.general-btn {
     width: 193px;
     height: 52px;
     border: none;
@@ -42,17 +52,17 @@
     color: #f5f7fb;
     background-color: #4d5b9e;
     cursor: pointer;
-  }
-  
-  .quiz {
+}
+
+.quiz {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     color: #293264;
-  }
-  
-  .question-container {
+}
+
+.question-container {
     width: 80%;
     margin: 20px auto;
     display: flex;
@@ -96,4 +106,14 @@
     height: 35px;
     border-radius: 10px;
     margin: 20px;
+}
+
+.game-over {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin-top: 50px;
+    padding: 10px 10px 0 10px;
 }

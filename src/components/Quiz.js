@@ -5,9 +5,13 @@ import axios from 'axios';
 import { QuestionModel } from '../QuestionModel';
 import Question from './Question';
 import Answer from './Answer';
+import GameOver from './GameOver';
 
-export default function Quiz() {
+export default function Quiz(props) {
     const [questions, setQuestions] = React.useState([]);
+    const [correctAnswers, setCorrectAnswers] = React.useState(0);
+    const [isQuizEnded, setIsQuizEnded] = React.useState(false);
+
     React.useEffect(() => {
         axios.get(
             'https://opentdb.com/api.php?amount=5&category=22&difficulty=medium&type=multiple'
@@ -40,8 +44,18 @@ function selectAnswer(query, selectedAnswer) {
     });
 }
 
-function checkAnswers(){
-
+function checkAnswers() {
+    const answerElements = document.getElementsByClassName('answer');
+    questions.forEach((question) =>
+        question.answers.forEach((answer) => {
+            if (answer.isSelected) {
+                if (answer.isRight) {
+                    setCorrectAnswers((prevCorrectAnswers) => prevCorrectAnswers + 1);
+                }
+            }
+        })
+    );
+    setIsQuizEnded(true);
 }
 
     const questionElements = questions.map(question => (
@@ -67,6 +81,14 @@ function checkAnswers(){
             <>
                 {questionElements}
                 <button className="general-btn" onClick={checkAnswers}>Check answers</button>
+                {isQuizEnded ? (
+                    <GameOver
+                        correctAnswers={correctAnswers}
+                        startNewGame={props.restartGame}
+                    />
+                    ) : (
+                        ''
+                    )}
             </>
         ) : (
             'spinner...'

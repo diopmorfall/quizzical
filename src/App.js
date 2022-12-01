@@ -12,7 +12,9 @@ export default function App() {
     return (
         <main>
             {isQuizStarted ? (
-                <Quiz />
+                <>
+                    <Quiz restartGame={startQuiz} />
+                </>
             ) : (
                 <section className="home">
                     <h1>Quizzical</h1>
