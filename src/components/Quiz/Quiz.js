@@ -2,16 +2,19 @@ import React from 'react';
 import { nanoid } from 'nanoid';
 import axios from 'axios';
 import BarLoader from 'react-spinners/BarLoader';
+import styles from './Quiz.module.css';
 
-import { QuestionModel } from '../QuestionModel';
-import Question from './Question';
-import Answer from './Answer';
-import GameOver from './GameOver';
+import { QuestionModel } from '../../QuestionModel';
+import Button from '../Button/Button';
+import Question from '../Question/Question';
+import Answer from '../Answer/Answer';
+import GameOver from '../GameOver/GameOver';
 
 export default function Quiz(props) {
     const [questions, setQuestions] = React.useState([]);
     const [correctAnswers, setCorrectAnswers] = React.useState(0);
     const [isQuizEnded, setIsQuizEnded] = React.useState(false);
+    const [isButtonDisabled, setIsButtonDisabled] = React.useState(false);
 
     React.useEffect(() => {
         axios.get(
@@ -46,7 +49,9 @@ function selectAnswer(query, selectedAnswer) {
 }
 
 function checkAnswers() {
-    const answerElements = document.getElementsByClassName('answer');
+    setIsButtonDisabled(true);
+    setIsQuizEnded(true);
+    
     questions.forEach((question) =>
         question.answers.forEach((answer) => {
             if (answer.isSelected) {
@@ -56,7 +61,6 @@ function checkAnswers() {
             }
         })
     );
-    setIsQuizEnded(true);
     setTimeout(() => {
         document.getElementById("game-over").scrollIntoView(true)
     }, 500);
@@ -73,6 +77,7 @@ function checkAnswers() {
                     value={answer.value}
                     isRight={answer.isRight}
                     isSelected={answer.isSelected}
+                    isQuizEnded={isQuizEnded} //todo: is really needed ?
                     onSelect={() => selectAnswer(question.query, answer.value)}
                 />
             ))}
@@ -80,25 +85,28 @@ function checkAnswers() {
     ));
         
     return (
-        <section className="quiz">
-        {questionElements.length ? (
-            <>
-                {questionElements}
-                
-                    <button className="general-btn" onClick={checkAnswers}>Check answers</button>
-                
-                {isQuizEnded ? (
-                    <GameOver
-                        correctAnswers={correctAnswers}
-                        startNewGame={props.restartGame}
+        <section className={styles['quiz']}>
+            {questionElements.length ? (
+                <>
+                    {questionElements}
+                    <Button
+                        caption="Check answers"
+                        onClick={checkAnswers}
+                        isDisabled={isButtonDisabled}
                     />
+                    {isQuizEnded ? (
+                        <GameOver
+                            correctAnswers={correctAnswers}
+                            questionsNumber={questions.length}
+                            startNewGame={props.restartGame}
+                        />
                     ) : (
                         ''
                     )}
-            </>
-        ) : (
-            <BarLoader className='loader' color='#4d5b9e' height='20px' width='50%' />
-        )}
+                </>
+            ) : (
+                <BarLoader className='loader' color='#4d5b9e' height='20px' width='50%' />
+            )}
         </section>
     );
 }

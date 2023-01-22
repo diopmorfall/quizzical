@@ -1,0 +1,11 @@
+.answer {
+    min-height: 25px;
+    background-color: inherit;
+    border: 1px solid #4d5b9e;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 10.24px;
+    font-weight: 600;
+    overflow: visible;
+    cursor: pointer;
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.css';
-import Quiz from './components/Quiz';
+import Button from './components/Button/Button'
+import Quiz from './components/Quiz/Quiz';
 
 export default function App() {
     const [isQuizStarted, setIsQuizStarted] = React.useState(false);
@@ -19,9 +20,7 @@ export default function App() {
                 <section className="home">
                     <h1>Quizzical</h1>
                     <p>Test your knowledge</p>
-                    <button className="general-btn" onClick={startQuiz}>
-                        Start quiz
-                    </button>
+                    <Button caption="Start quiz" onClick={startQuiz} />
                 </section>
             )}
         </main>
