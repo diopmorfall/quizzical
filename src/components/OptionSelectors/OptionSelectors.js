@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 
 import moduleStyles from './OptionSelectors.module.css';
 
-export default function OptionSelectors(props) {
+export default function OptionSelectors({ categories }) {
     function mapToElements(array) {
         return array.map(item => 
             <option key={nanoid()} value={item}>
@@ -12,7 +12,7 @@ export default function OptionSelectors(props) {
         );
     }
 
-    const categoriesElements = props.categories.map(field => 
+    const categoriesElements = categories.map(field => 
         <option key={nanoid()} value={field.name}>
             {field.name}
         </option>

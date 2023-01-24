@@ -1,27 +1,28 @@
 import React from 'react';
 import moduleStyles from './Answer.module.css';
 
-export default function Answer(props) {
+export default function Answer({ isSelected, isQuizEnded, isRight, onSelect, value }) {
     let styles = {};
-    if (props.isSelected) {
+    if (isSelected) {
         styles = {
             backgroundColor: '#D6DBF5',
             border: 'none',
         };
     }
 
-    if (props.isQuizEnded) {
-        if (props.isSelected) {
-            styles = props.isRight
-                ? {
+    if (isQuizEnded) {
+        if (isSelected) {
+            styles = isRight ?
+                {
                     backgroundColor: '#94d7a2',
                     border: 'none',
-                } : {
+                } : 
+                {
                     backgroundColor: '#f8bcbc',
                     border: 'none',
                     opacity: '0.5',
                 };
-        } else if (!props.isSelected && props.isRight) {
+        } else if (!isSelected && isRight) {
             styles = {
                 backgroundColor: '#94d7a2',
                 border: 'none',
@@ -37,9 +38,9 @@ export default function Answer(props) {
         <button
             className={moduleStyles['answer']}
             style={styles}
-            onClick={props.onSelect}
+            onClick={onSelect}
         >
-            {props.value}
+            {value}
         </button>
     );
 }

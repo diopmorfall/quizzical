@@ -1,9 +1,9 @@
 import React from 'react';
 import moduleStyles from './Button.module.css';
 
-export default function Button(props) {
+export default function Button({ caption, onClick, isDisabled }) {
     let styles;
-    if (props.caption !== 'Start quiz') {
+    if (caption !== 'Start quiz') {
         styles = {
             width: '120px',
             height: '35px',
@@ -15,10 +15,10 @@ export default function Button(props) {
         <button
             className={moduleStyles['general-btn']}
             style={styles}
-            onClick={props.onClick}
-            disabled={props.isDisabled}
+            onClick={onClick}
+            disabled={isDisabled}
         >
-            {props.caption}
+            {caption}
         </button>
     );
 }
