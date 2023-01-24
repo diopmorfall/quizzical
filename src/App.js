@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './index.css';
+
 import OptionSelectors from './components/OptionSelectors/OptionSelectors';
 import Button from './components/Button/Button'
 import Quiz from './components/Quiz/Quiz';
@@ -37,7 +38,6 @@ export default function App() {
 
             setIsQuizStarted((prevIsQuizStarted) => !prevIsQuizStarted);
         } else {
-            console.log('wrong');
             setSelectionError(true);
         }
     }
@@ -57,9 +57,9 @@ export default function App() {
                     <p>Test your knowledge</p>
                     <OptionSelectors categories={categories} />
                     <Button caption="Start quiz" onClick={startQuiz} />
-                    {selectionError && (
+                    {selectionError && 
                         <p className="error">Please select all option to start the quiz</p>
-                    )}
+                    }
                 </section>
             )}
         </main>

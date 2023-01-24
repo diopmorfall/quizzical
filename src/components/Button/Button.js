@@ -1,5 +1,5 @@
 import React from 'react';
-import buttonStyles from './Button.module.css';
+import moduleStyles from './Button.module.css';
 
 export default function Button(props) {
     let styles;
@@ -13,7 +13,7 @@ export default function Button(props) {
 
     return (
         <button
-            className={buttonStyles['general-btn']}
+            className={moduleStyles['general-btn']}
             style={styles}
             onClick={props.onClick}
             disabled={props.isDisabled}

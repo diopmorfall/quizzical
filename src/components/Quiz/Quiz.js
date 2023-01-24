@@ -2,7 +2,7 @@ import React from 'react';
 import { nanoid } from 'nanoid';
 import axios from 'axios';
 import BarLoader from 'react-spinners/BarLoader';
-import styles from './Quiz.module.css';
+import moduleStyles from './Quiz.module.css';
 
 import { QuestionModel } from '../../QuestionModel';
 import Button from '../Button/Button';
@@ -20,7 +20,7 @@ export default function Quiz({ categoryId, difficulty, questionsAmount }) {
         axios.get(
             `https://opentdb.com/api.php?amount=${questionsAmount}&category=${categoryId}&difficulty=${difficulty}&type=multiple`
         )
-            .then(data => 
+        .then(data => 
                 setQuestions(() =>
                     data.data.results.map(question => new QuestionModel(question))
                 )
@@ -28,10 +28,10 @@ export default function Quiz({ categoryId, difficulty, questionsAmount }) {
     }, []);
 
     function selectAnswer(query, selectedAnswer) {
-        setQuestions((prevQuestions) => {
+        setQuestions(prevQuestions => {
             return prevQuestions.map(question => {
                 if (question.query === query) {
-                    let newAnswers = question.answers.map((answer) => ({
+                    let newAnswers = question.answers.map(answer => ({
                         ...answer,
                         isSelected: false,
                     }));
@@ -52,11 +52,11 @@ export default function Quiz({ categoryId, difficulty, questionsAmount }) {
         setIsButtonDisabled(true);
         setIsQuizEnded(true);
         
-        questions.forEach((question) =>
-            question.answers.forEach((answer) => {
+        questions.forEach(question =>
+            question.answers.forEach(answer => {
                 if (answer.isSelected) {
                     if (answer.isRight) {
-                        setCorrectAnswers((prevCorrectAnswers) => prevCorrectAnswers + 1);
+                        setCorrectAnswers(prevCorrectAnswers => prevCorrectAnswers + 1);
                     }
                 }
             })
@@ -85,7 +85,7 @@ export default function Quiz({ categoryId, difficulty, questionsAmount }) {
     ));
         
     return (
-        <section className={styles['quiz']}>
+        <section className={moduleStyles['quiz']}>
             {questionElements.length ? (
                 <>
                     {questionElements}

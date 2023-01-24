@@ -1,17 +1,19 @@
 import React from 'react';
-import OptionSelectorsStyles from './OptionSelectors.module.css';
+import { nanoid } from 'nanoid';
+
+import moduleStyles from './OptionSelectors.module.css';
 
 export default function OptionSelectors(props) {
     function mapToElements(array) {
         return array.map(item => 
-            <option key={item} value={item}>
+            <option key={nanoid()} value={item}>
                 {item}
             </option>
         );
     }
 
     const categoriesElements = props.categories.map(field => 
-        <option key={field.name} value={field.name}>
+        <option key={nanoid()} value={field.name}>
             {field.name}
         </option>
     );
@@ -22,15 +24,15 @@ export default function OptionSelectors(props) {
     }
 
     return (
-        <div className={OptionSelectorsStyles['selectors']}>
-            <select className={OptionSelectorsStyles['selection']} id="category-selection">
+        <div className={moduleStyles['selectors']}>
+            <select className={moduleStyles['selection']} id="category-selection">
                 <option value="" hidden selected>
                     Choose a category
                 </option>
                 {categoriesElements}
             </select>
             <select
-                className={OptionSelectorsStyles['selection']}
+                className={moduleStyles['selection']}
                 id="difficulty-selection"
             >
                 <option value="" hidden selected>
@@ -38,7 +40,7 @@ export default function OptionSelectors(props) {
                 </option>
                 {mapToElements(['Easy', 'Medium', 'Hard'])}
             </select>
-            <select className={OptionSelectorsStyles['selection']} id="amount-selection">
+            <select className={moduleStyles['selection']} id="amount-selection">
                 <option value="" hidden selected>
                     Choose the number of questions
                 </option>
