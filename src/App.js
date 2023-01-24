@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import './index.css';
 import OptionSelectors from './components/OptionSelectors/OptionSelectors';
 import Button from './components/Button/Button'
@@ -12,12 +13,11 @@ export default function App() {
     const [selectionError, setSelectionError] = React.useState(false);
 
     React.useEffect(() => {
-        fetch('https://opentdb.com/api_category.php')
-            .then(res => res.json())
+        axios.get('https://opentdb.com/api_category.php')
             .then(data => {
-            setCategories(data.trivia_categories);
-            });
-        }, []);
+                setCategories(data.data.trivia_categories);
+            });    
+    }, []);
     
     const categorySetter = document.getElementById('category-selection');
     const difficultySetter = document.getElementById('difficulty-selection');
