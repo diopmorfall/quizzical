@@ -7,3 +7,15 @@
     font-weight: 600;
     color: #293264;
 }
+
+@media only screen and (min-width: 768px) {
+    .game-over {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .game-over {
+        font-size: 20px;
+    }
+}

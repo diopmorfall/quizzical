@@ -1,6 +1,6 @@
 .question-container {
     width: 80%;
-    margin: 20px auto;
+    margin: 25px auto;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -23,4 +23,36 @@
     grid-template-columns: auto auto;
     column-gap: 15%;
     row-gap: 25px;
+}
+
+@media only screen and (min-width: 768px) {
+    .question-container {
+        width: 70%;
+        margin: 35px auto;
+    }
+
+    .question-container h2 {
+        text-align: center;
+        font-size: 19px;
+        margin-bottom: 25px;
+    }
+
+    .answers{
+        row-gap: 35px;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .question-container {
+        margin: 45px auto;
+    }
+
+    .question-container h2 {
+        font-size: 22px;
+        margin-bottom: 35px;
+    }
+
+    .answers{
+        row-gap: 40px;
+    }
 }

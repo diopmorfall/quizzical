@@ -14,11 +14,12 @@
 }
 
 main {
-    height: 50%;
+    height: 70%;
 }
 
 .home {
     width: 70%;
+    height: 100%;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -49,4 +50,32 @@ main {
 
 .loader{
     border-radius: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+    main{
+        height: 65%;
+    }
+
+    .home h1 {
+        font-size: 40px;
+    }
+
+    .home p {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    main{
+        height: 90%;
+    }
+
+    .home h1 {
+        font-size: 50px;
+    }
+
+    .home p {
+        font-size: 25px;
+    }
 }
