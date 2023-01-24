@@ -10,7 +10,7 @@ import Question from '../Question/Question';
 import Answer from '../Answer/Answer';
 import GameOver from '../GameOver/GameOver';
 
-export default function Quiz(props) {
+export default function Quiz({ categoryId, difficulty, questionsAmount }) {
     const [questions, setQuestions] = React.useState([]);
     const [correctAnswers, setCorrectAnswers] = React.useState(0);
     const [isQuizEnded, setIsQuizEnded] = React.useState(false);
@@ -18,7 +18,7 @@ export default function Quiz(props) {
 
     React.useEffect(() => {
         axios.get(
-            'https://opentdb.com/api.php?amount=5&category=22&difficulty=medium&type=multiple'
+            `https://opentdb.com/api.php?amount=${questionsAmount}&category=${categoryId}&difficulty=${difficulty}&type=multiple`
         )
             .then(data => 
                 setQuestions(() =>
