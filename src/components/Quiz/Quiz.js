@@ -27,44 +27,44 @@ export default function Quiz(props) {
             );
     }, []);
 
-function selectAnswer(query, selectedAnswer) {
-    setQuestions((prevQuestions) => {
-        return prevQuestions.map(question => {
-            if (question.query === query) {
-                let newAnswers = question.answers.map((answer) => ({
-                    ...answer,
-                    isSelected: false,
-                }));
-                newAnswers = newAnswers.map(answer => {
-                    if (answer.value === selectedAnswer) {
-                        answer = { ...answer, isSelected: true };
-                    }
-                    return answer;
-                });
-                question.answers = newAnswers;
-            }
-            return question;
-        });
-    });
-}
-
-function checkAnswers() {
-    setIsButtonDisabled(true);
-    setIsQuizEnded(true);
-    
-    questions.forEach((question) =>
-        question.answers.forEach((answer) => {
-            if (answer.isSelected) {
-                if (answer.isRight) {
-                    setCorrectAnswers((prevCorrectAnswers) => prevCorrectAnswers + 1);
+    function selectAnswer(query, selectedAnswer) {
+        setQuestions((prevQuestions) => {
+            return prevQuestions.map(question => {
+                if (question.query === query) {
+                    let newAnswers = question.answers.map((answer) => ({
+                        ...answer,
+                        isSelected: false,
+                    }));
+                    newAnswers = newAnswers.map(answer => {
+                        if (answer.value === selectedAnswer) {
+                            answer = { ...answer, isSelected: true };
+                        }
+                        return answer;
+                    });
+                    question.answers = newAnswers;
                 }
-            }
-        })
-    );
-    setTimeout(() => {
-        document.getElementById("game-over").scrollIntoView(true)
-    }, 500);
-}
+                return question;
+            });
+        });
+    }
+
+    function checkAnswers() {
+        setIsButtonDisabled(true);
+        setIsQuizEnded(true);
+        
+        questions.forEach((question) =>
+            question.answers.forEach((answer) => {
+                if (answer.isSelected) {
+                    if (answer.isRight) {
+                        setCorrectAnswers((prevCorrectAnswers) => prevCorrectAnswers + 1);
+                    }
+                }
+            })
+        );
+        setTimeout(() => {
+            document.getElementById("game-over").scrollIntoView(true)
+        }, 500);
+    }
 
     const questionElements = questions.map(question => (
         <Question
@@ -77,7 +77,7 @@ function checkAnswers() {
                     value={answer.value}
                     isRight={answer.isRight}
                     isSelected={answer.isSelected}
-                    isQuizEnded={isQuizEnded} //todo: is really needed ?
+                    isQuizEnded={isQuizEnded}
                     onSelect={() => selectAnswer(question.query, answer.value)}
                 />
             ))}
@@ -98,7 +98,6 @@ function checkAnswers() {
                         <GameOver
                             correctAnswers={correctAnswers}
                             questionsNumber={questions.length}
-                            startNewGame={props.restartGame}
                         />
                     ) : (
                         ''
