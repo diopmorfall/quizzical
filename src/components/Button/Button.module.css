@@ -1,6 +1,8 @@
 .general-btn {
     width: 193px;
     height: 52px;
+    margin: 25px;
+    font-size: 14px;
     border: none;
     border-radius: 15px;
     color: #f5f7fb;

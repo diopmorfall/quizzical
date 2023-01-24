@@ -9,11 +9,11 @@
 .question-container h2 {
     font-size: 16px;
     margin-bottom: 20px;
+    font-family: 'Karla', sans-serif;
 }
 
 .question-container div:last-of-type {
     margin-top: 15px;
-    border-top: 0.7px solid #dbdef0;
 }
 
 .answers {
