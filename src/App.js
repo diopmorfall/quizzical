@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import axios from 'axios';
 import './index.css';
 
@@ -7,16 +7,34 @@ import Button from './components/Button/Button'
 import Quiz from './components/Quiz/Quiz';
 
 export default function App() {
-    //todo: useReducer
-    const [isQuizStarted, setIsQuizStarted] = React.useState(false);
-    const [categories, setCategories] = React.useState([]);
-    const [selections, setSelections] = React.useState({});
-    const [selectionError, setSelectionError] = React.useState(false);
+    const defaultState = {
+        isQuizStarted: false,
+        categories: [],
+        options: {},
+        isSelectionError: false,
+    };
+    
+    const reducer = (state, action) => {
+        switch (action.type) {
+            case 'START_QUIZ':
+                return { ...state, isQuizStarted: true };
+            case 'SET_CATEGORIES':
+                return { ...state, categories: action.payload };
+            case 'SET_OPTIONS':
+                return { ...state, options: action.payload };
+            case 'SELECTION_ERROR':
+                return { ...state, isSelectionError: true };
+            default:
+                return state;
+        }
+    };
+    
+    const [state, dispatch] = useReducer(reducer, defaultState);
 
     React.useEffect(() => {
         axios.get('https://opentdb.com/api_category.php')
             .then(data => {
-                setCategories(data.data.trivia_categories);
+                dispatch({ type: 'SET_CATEGORIES', payload: data.data.trivia_categories });
             });    
     }, []);
     
@@ -25,39 +43,42 @@ export default function App() {
     const questionsAmountSetter = document.getElementById('amount-selection');
 
     function startQuiz() {
-        const selectedCategory = categories.find(category => 
+        const selectedCategory = state.categories.find(category => 
             category.name === categorySetter.value
         );
 
         if (selectedCategory && difficultySetter.value && questionsAmountSetter.value) {
-            setSelections({
-                id: selectedCategory.id,
-                difficulty: difficultySetter.value,
-                questionsAmount: questionsAmountSetter.value,
+            dispatch({
+                type: 'SET_OPTIONS',
+                payload: {
+                    id: selectedCategory.id,
+                    difficulty: difficultySetter.value,
+                    questionsAmount: questionsAmountSetter.value,
+                },
             });
 
-            setIsQuizStarted((prevIsQuizStarted) => !prevIsQuizStarted);
+            dispatch({ type: 'START_QUIZ' });
         } else {
-            setSelectionError(true);
+            dispatch({ type: 'SELECTION_ERROR' });
         }
     }
 
     return (
         <main>
-            {isQuizStarted ? (
+            {state.isQuizStarted ? (
                 <>
-                    <Quiz categoryId={selections.id}
-                        difficulty={selections.difficulty.toLowerCase()}
-                        questionsAmount={selections.questionsAmount}
+                    <Quiz categoryId={state.options.id}
+                        difficulty={state.options.difficulty.toLowerCase()}
+                        questionsAmount={state.options.questionsAmount}
                     />
                 </>
             ) : (
                 <section className="home">
                     <h1>Quizzical</h1>
                     <p>Test your knowledge</p>
-                    <OptionSelectors categories={categories} />
+                    <OptionSelectors categories={state.categories} />
                     <Button caption="Start quiz" onClick={startQuiz} />
-                    {selectionError && 
+                    {state.isSelectionError && 
                         <p className="error">Please select all option to start the quiz</p>
                     }
                 </section>
