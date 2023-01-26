@@ -4,7 +4,7 @@
     padding: 0;
     scroll-behavior: smooth;
 }
-    
+
 #root {
     min-height: 100vh;
     display: flex;
@@ -14,82 +14,89 @@
 }
 
 main {
-    height: 35%;
+    height: 70%;
 }
 
 .home {
+    width: 70%;
+    height: 100%;
+    margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     color: #293264;
+}
+
+.home h1, p{
+    font-family: 'Karla', sans-serif;
 }
 
 .home h1 {
     font-size: 31px;
     margin-bottom: 7px;
+    text-align: center;
 }
 
 .home p {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    font-weight: 400;
+    font-style: italic;
 }
 
-button {
-    width: 193px;
-    height: 52px;
-    border: none;
-    border-radius: 15px;
-    color: #f5f7fb;
-    background-color: #4d5b9e;
-    cursor: pointer;
+.error {
+    color: red;
 }
 
-.quiz {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    color: #293264;
-}
-
-.question-container {
-    width: 80%;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin-bottom: 25px;
-}
-
-.question-container h2 {
-    font-size: 16px;
-    margin-bottom: 12px;
-}
-
-.question-container hr {
-    color: #dbdef0;
-}
-
-.answers {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 15px;
-}
-
-.answers span {
-    width: fit-content;
-    height: 20px;
-    border: 1px solid #4d5b9e;
-    border-radius: 8px;
-    text-align: center;
-    font-size: 10.24px;
-    cursor: pointer;
-}
-
-.quiz button {
-    width: 120px;
-    height: 35px;
+.loader{
     border-radius: 10px;
-    margin: 20px;
+}
+
+.credits {
+    margin: 15px;
+    text-align: center;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 600;
+    opacity: 0.5;
+}
+
+.credits a {
+    color: black;
+}
+
+@media only screen and (min-width: 768px) {
+    main{
+        height: 65%;
+    }
+
+    .home{
+        width: 50%;
+    }
+
+    .home h1 {
+        font-size: 40px;
+    }
+
+    .home p {
+        font-size: 20px;
+    }
+
+    .credits{
+        font-size: 14px;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    main{
+        height: 90%;
+    }
+
+    .home h1 {
+        font-size: 50px;
+    }
+
+    .home p {
+        font-size: 25px;
+    }
 }

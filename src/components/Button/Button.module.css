@@ -1,0 +1,23 @@
+.general-btn {
+    width: 193px;
+    height: 52px;
+    margin: 25px;
+    font-size: 14px;
+    border: none;
+    border-radius: 15px;
+    color: #f5f7fb;
+    background-color: #4d5b9e;
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 768px) {
+    .general-btn {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .general-btn {
+        font-size: 18px;
+    }
+}
