@@ -64,25 +64,31 @@ export default function App() {
     }
 
     return (
-        <main>
-            {state.isQuizStarted ? (
-                <>
-                    <Quiz categoryId={state.options.id}
-                        difficulty={state.options.difficulty.toLowerCase()}
-                        questionsAmount={state.options.questionsAmount}
-                    />
-                </>
-            ) : (
-                <section className="home">
-                    <h1>Quizzical</h1>
-                    <p>Test your knowledge</p>
-                    <OptionSelectors categories={state.categories} />
-                    <Button caption="Start quiz" onClick={startQuiz} />
-                    {state.isSelectionError && 
-                        <p className="error">Please select all option to start the quiz</p>
-                    }
-                </section>
-            )}
-        </main>
+        <>
+            <main>
+                {state.isQuizStarted ? (
+                    <>
+                        <Quiz categoryId={state.options.id}
+                            difficulty={state.options.difficulty.toLowerCase()}
+                            questionsAmount={state.options.questionsAmount}
+                        />
+                    </>
+                ) : (
+                    <section className="home">
+                        <h1>Quizzical</h1>
+                        <p>Test your knowledge</p>
+                        <OptionSelectors categories={state.categories} />
+                        <Button caption="Start quiz" onClick={startQuiz} />
+                        {state.isSelectionError && 
+                            <p className="error">Please select all option to start the quiz</p>
+                        }
+                    </section>
+                )}
+            </main>
+            <p className="credits">
+                Copyright © 2023. Built by{' '}
+                <a href="https://github.com/diopmorfall">Mor Fall Diop</a>
+            </p>
+        </>
     );
 }

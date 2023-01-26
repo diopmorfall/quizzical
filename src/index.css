@@ -52,6 +52,19 @@ main {
     border-radius: 10px;
 }
 
+.credits {
+    margin: 15px;
+    text-align: center;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 600;
+    opacity: 0.5;
+}
+
+.credits a {
+    color: black;
+}
+
 @media only screen and (min-width: 768px) {
     main{
         height: 65%;
@@ -67,6 +80,10 @@ main {
 
     .home p {
         font-size: 20px;
+    }
+
+    .credits{
+        font-size: 14px;
     }
 }
 
