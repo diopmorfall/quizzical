@@ -4,6 +4,7 @@
 
 - [Overview](#overview)
   - [Guidelines](#guidelines)
+  - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
@@ -19,6 +20,11 @@
 The project must satisfy the following requirements:
 
 - Allow the user to play a quiz game, by choosing the category, the challenge level and the number of questions which will then be returned by the [OpenTDB API](https://opentdb.com/), and by selecting the answers and checking the final score
+
+### Links
+
+- Live Site URL: [Netlify](https://start2impact-scrimba-quizzical.netlify.app/)
+- Source code: [Github](https://github.com/diopmorfall/quizzical/)
 
 ## My process
 
